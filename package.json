@@ -1,0 +1,24 @@
+{
+  "name": "rainbow-puffle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhatIsACore/rainbow-puffle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WhatIsACore/rainbow-puffle/issues"
+  },
+  "homepage": "https://github.com/WhatIsACore/rainbow-puffle#readme"
+}

@@ -1,2 +1,1 @@
-# gambot-deckmaster
 # rainbow-puffle
