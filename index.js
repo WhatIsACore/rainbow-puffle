@@ -3,15 +3,29 @@ const client = new Discord.Client();
 
 var prefix = '.cp';
 
+// channel ids:
+// 447974253288095745: bot testing grounds
+// 473349078013444096: stever 4 memes and dreams
+
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Logged in as ${client.user.tag} on hour ${new Date().getHours()}!`);
   client.user.setActivity('Club Penguin');
+
+  // daily cp meme
+  if(new Date().getHours() === 0){
+    sendDailyMeme('473349078013444096');
+  }
+  client.setInterval(function(){
+    if(new Date().getHours() === 0){
+      sendDailyMeme('473349078013444096');
+    }
+  }, 1000 * 60 * 60); // 1000 * 60 * 60
 });
 
 client.on('message', msg => {
-  /*if(msg.author.username === 'WhatIsACore' && msg.author.discriminator === '6858'){
-    msg.reply('hi ur cool');
-  }*/
+  if(msg.author.username === 'WhatIsACore' && msg.author.discriminator === '6858' && msg.content === 'channel')
+    console.log(msg.channel.id);
+
   if(msg.content.slice(0, prefix.length) === prefix){
     var args = msg.content.slice([prefix.length]).split(' ');
     var cmd = args[1];
@@ -44,6 +58,13 @@ app.get('/', function(req, res){
 });
 
 serv.listen(process.env.PORT || 5000);
+
+
+
+function sendDailyMeme(server){
+  var url = 'https://whatisacore.github.io/cpmemes/' + memesList[Math.floor(Math.random() * memesList.length)];
+  client.channels.get(server).send('today\'s club penguin meme:', {files: [url]});
+}
 
 var memesList = [
   'ayy lmao.png',
