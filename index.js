@@ -12,12 +12,14 @@ client.on('ready', () => {
   client.user.setActivity('Club Penguin');
 
   // daily cp meme
-  if(new Date().getHours() === 4){
+  if(new Date().getHours() === 4 && !sentMemeToday){
     sendDailyMeme('473349078013444096');
   }
   client.setInterval(function(){
-    if(new Date().getHours() === 4){
+    if(new Date().getHours() === 4 && !sentMemeToday){
       sendDailyMeme('473349078013444096');
+    } else {
+      sentMemeToday = false;
     }
   }, 1000 * 60 * 60); // 1000 * 60 * 60
 });
@@ -60,10 +62,11 @@ app.get('/', function(req, res){
 serv.listen(process.env.PORT || 5000);
 
 
-
+var sentMemeToday = false;
 function sendDailyMeme(server){
   var url = 'https://whatisacore.github.io/cpmemes/' + memesList[Math.floor(Math.random() * memesList.length)];
   client.channels.get(server).send('today\'s club penguin meme:', {files: [url]});
+  sentMemeToday = true;
 }
 
 var memesList = [
