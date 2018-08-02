@@ -12,11 +12,11 @@ client.on('ready', () => {
   client.user.setActivity('Club Penguin');
 
   // daily cp meme
-  if(new Date().getHours() === 0){
+  if(new Date().getHours() === 4){
     sendDailyMeme('473349078013444096');
   }
   client.setInterval(function(){
-    if(new Date().getHours() === 0){
+    if(new Date().getHours() === 4){
       sendDailyMeme('473349078013444096');
     }
   }, 1000 * 60 * 60); // 1000 * 60 * 60
