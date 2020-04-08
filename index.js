@@ -1,6 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+var config;
+try {
+  config = require('./config');
+} catch(e){
+  config = process.env;
+}
+
 var prefix = '!';
 const korean = /[\u3131-\uD79D]/ugi;
 var cache = [];
@@ -85,7 +92,7 @@ client.on('message', msg => {
   }
 });
 
-client.login('Njk3MzE1MjI0MDYzMDQ5NzUx.Xo1gIg.eWU2Ni4-3ky_nr8SuYPvRtyUhII');
+client.login(config.token);
 
 var express = require('express');
 var app = express();
