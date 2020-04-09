@@ -19,10 +19,26 @@ function circ(key, value){
   return value;
 }
 
+var prefixes = ['mal', 'abb', 'all', 'max', 'tan', 'zek', 'baek', 'al', 'harr', 'vict'];
+var suffixes = ['ia', 'by', 'ison', 'ax', 'an', 'eki', 'hyun', 'ex', 'ry', 'toria'];
+var lastNames = ['serafin', 'louie', 'phan', 'doong', 'hua', 'xu', 'byun', 'cohen', 'styles', 'justice'];
+var n = prefixes.length;
+
+function ship(){
+  var a = Math.floor(Math.random() * n);
+  var b = Math.floor(Math.random() * n);
+  while(a == b) b = Math.floor(Math.random() * n);
+  return (prefixes[a] + suffixes[b])
+    .replace('bbb', 'bb')
+    .replace('rrr', 'rr')
+    + ' ' + lastNames[a][0] + '. ' + lastNames[b];
+}
+
+var screenshareLink = 'https://www.discordapp.com/channels/697310659112730746/697310659695607811';
+
 
 // channel ids:
 // 447974253288095745: bot testing grounds
-// 473349078013444096: stever 4 memes and dreams
 // 697310659695607810: tanratz
 
 client.on('ready', () => {
@@ -47,7 +63,7 @@ client.on('message', msg => {
     switch (cmd){
       case 'channel':
 
-        msg.channel.send(msg.channel.id);
+        channel.send(channel.id);
         break;
 
       case 'kick':
@@ -57,16 +73,16 @@ client.on('message', msg => {
           const member = msg.guild.member(user);
           if(member)
             member.kick().then(() => {
-              msg.channel.send('yes sir');
+              channel.send('yes sir');
             }).catch(err => {
-              msg.channel.send('i failed :(');
+              channel.send('i failed :(');
               console.error(err);
             });
         }
         break;
 
       default:
-        msg.channel.send('umm idk');
+        channel.send('umm idk');
     }
   }
 
@@ -85,6 +101,13 @@ client.on('message', msg => {
         break;
       case 'isclubpenguinback':
         msg.reply('no ;(');
+        break;
+      case 'ship':
+        channel.send(ship());
+        break;
+      case 'screenshare':
+      case 'call':
+        msg.reply(screenshareLink);
         break;
       default:
         msg.reply('idk what that means, try ' + prefix + 'help');
