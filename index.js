@@ -54,7 +54,7 @@ client.on('message', msg => {
   }
 
   if(msg.author.username === 'zeki' && msg.author.discriminator === '6858' && msg.content.slice(0, 4) === 'œ'){
-    var content = msg.content.substring(5);
+    var content = msg.content.substring(1);
     var args = content.split(' ');
     var cmd = args[0];
 
