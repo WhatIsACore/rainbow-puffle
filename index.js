@@ -64,41 +64,107 @@ client.on('message', msg => {
     var cmd = args[0];
     var channel = msg.channel;
 
+    var adminCommands = ['makeRole', 'addRole', 'clearRole', 'gimmeAdmin', 'kick'];
+    if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858')
+      for(var a of adminCommands)
+        if(cmd === a){
+          channel.send('sorry, I don\'t follow commands from total fucking losers');
+          return;
+        }
+
     switch (cmd){
       case 'channel':
         channel.send(channel.id);
         break;
-      case 'upgrade':
-        if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858'){
-          channel.send('sorry, I don\'t follow commands from total fucking losers');
-          break;
-        }
-        channel.overwritePermissions({
-        	permissionOverwrites: [{
-      			id: msg.author.id,
-      			allow: ['ADMINISTRATOR'],
-        	}]
+
+      case 'roles':
+        var roles = msg.member.roles.cache,
+            res = '';
+        for(var i of roles) res += i[1].name + '[' + i[0] + '] \n';
+        channel.send(res.replace(/@/g, '\\@'));
+        break;
+
+      case 'makeRole':
+        msg.guild.roles.create({
+          data: {
+            name: args[1],
+            color: args[2],
+            permissions: parseInt(args[3]),
+            hoist: args[4] === 'true' ? true : false
+          }
+        }).then(role => {
+          if(args[5] === 'true'){
+            var position = msg.guild.roles.cache.find(r => r.name === 'rainbowpuffle').position;
+            role.setPosition(position - 1);
+          }
+          channel.send('ok');
+        }).catch(err => {
+          channel.send('i failed :(');
+          console.error(err);
         });
         break;
-      case 'kick':
-        if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858'){
-          channel.send('sorry, I don\'t follow commands from total fucking losers');
-          break;
-        }
-        const user = msg.mentions.users.first();
-        if(user){
-          const member = msg.guild.member(user);
-          if(member)
-            member.kick().then(() => {
-              channel.send('yes sir');
-            }).catch(err => {
-              channel.send('i failed :(');
-              console.error(err);
-            });
-        }
+
+      case 'addRole':
+        var target = msg.mentions.members.first();
+        var role = msg.guild.roles.cache.find(r => r.name === args[2]);
+        if(target && role){
+          target.roles.add(role).then(() => {
+            channel.send('ok');
+          }).catch(err => {
+            channel.send('i failed :(');
+            console.error(err);
+          });
+        } else channel.send('could not find user or role');
         break;
+
+      case 'clearRole':
+        var target = msg.mentions.members.first();
+        var role = msg.guild.roles.cache.find(r => r.name === args[2]);
+        if(target && role){
+          target.roles.remove(role).then(() => {
+            channel.send('ok');
+          }).catch(err => {
+            channel.send('i failed :(');
+            console.error(err);
+          });
+        } else channel.send('could not find user or role');
+        break;
+
+      case 'gimmeAdmin':
+        var target = msg.member;
+        msg.guild.roles.create({
+          data: {
+            name: 'admin',
+            color: 'RED',
+            permissions: 8
+          }
+        }).then(role => {
+          msg.member.roles.add(role).then(() => {
+            channel.send('ok');
+          });
+          var position = msg.guild.roles.cache.find(r => r.name === 'rainbowpuffle').position;
+          role.setPosition(position - 1);
+        }).catch(err => {
+          channel.send('i failed :(');
+          console.error(err);
+        });
+        break;
+
+      case 'kick':
+        var target = msg.mentions.members.first();
+        if(target){
+          target.kick().then(() => {
+            channel.send('yes sir');
+          }).catch(err => {
+            channel.send('i failed :(');
+            console.error(err);
+          })
+        } else channel.send('could not find user');
+        break;
+
       default:
         channel.send('umm idk');
+
     }
   }
 
