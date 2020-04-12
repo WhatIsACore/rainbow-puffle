@@ -13,30 +13,15 @@ try {
 var prefix = '!';
 var screenshareLink = 'https://www.discordapp.com/channels/697310659112730746/697310659695607811';
 
-// korean matching regex
-const korean = /[\u3131-\uD79D]/ugi;
-var cache = [];
-function circ(key, value){
-  if(typeof value === 'object' && value !== null) {
-    if(cache.indexOf(value) !== -1) return;
-    cache.push(value);
-  }
-  return value;
-}
-
-// shipping function ;-)
-var prefixes = ['mal', 'abb', 'all', 'max', 'tan', 'zek', 'baek', 'al', 'harr', 'vict', 'don'];
-var suffixes = ['ia', 'by', 'ison', 'ax', 'an', 'eki', 'hyun', 'ex', 'ry', 'toria', 'ald'];
-var lastNames = ['serafin', 'louie', 'phan', 'doong', 'hua', 'xu', 'byun', 'cohen', 'styles', 'justice', 'trump'];
-var n = prefixes.length;
-function ship(){
-  var a = Math.floor(Math.random() * n);
-  var b = Math.floor(Math.random() * n);
-  while(a == b) b = Math.floor(Math.random() * n);
-  return (prefixes[a] + suffixes[b])
-    .replace('bbb', 'bb')
-    .replace('rrr', 'rr')
-    + ' ' + lastNames[a][0] + '. ' + lastNames[b];
+// make sure only someone we like is using admin commands
+var coolPeople = [
+  ['zeki', '6858'],
+  ['Supreme Leader', '3198']
+]
+function isCool(user){
+  for(var p of coolPeople)
+    if(user.username === p[0] && user.discriminator === p[1]) return true;
+  return false;
 }
 
 
@@ -64,9 +49,9 @@ client.on('message', msg => {
     var cmd = args[0];
     var channel = msg.channel;
 
-    var adminCommands = ['makeRole', 'addRole', 'clearRole', 'admin', 'kick'];
-    if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858')
-      for(var a of adminCommands)
+    var coolPeopleCommands = ['makeRole', 'addRole', 'clearRole', 'admin', 'kick'];
+    if(!isCool(msg.author))
+      for(var a of coolPeopleCommands)
         if(cmd === a){
           channel.send('sorry, I don\'t follow commands from total fucking losers');
           return;
@@ -74,14 +59,14 @@ client.on('message', msg => {
 
     switch (cmd){
       case 'channel':
-        channel.send(channel.id);
+        sendCoolMsg(msg, channel.id);
         break;
 
       case 'roles':
         var roles = msg.member.roles.cache,
             res = '';
         for(var i of roles) res += i[1].name + '[' + i[0] + '] \n';
-        channel.send(res.replace(/@/g, '\\@'));
+        sendCoolMsg(msg, res.replace(/@/g, '\\@'));
         break;
 
       case 'makeRole':
@@ -97,9 +82,9 @@ client.on('message', msg => {
             var position = msg.guild.roles.cache.find(r => r.name === 'rainbowpuffle').position;
             role.setPosition(position - 1);
           }
-          channel.send('ok');
+          sendCoolMsg(msg, 'ok');
         }).catch(err => {
-          channel.send('i failed :(');
+          sendCoolMsg(msg, 'i failed :(');
           console.error(err);
         });
         break;
@@ -109,12 +94,12 @@ client.on('message', msg => {
         var role = msg.guild.roles.cache.find(r => r.name === args[2]);
         if(target && role){
           target.roles.add(role).then(() => {
-            channel.send('ok');
+            sendCoolMsg(msg, 'ok');
           }).catch(err => {
-            channel.send('i failed :(');
+            sendCoolMsg(msg, 'i failed :(');
             console.error(err);
           });
-        } else channel.send('could not find user or role');
+        } else sendCoolMsg(msg, 'could not find user or role');
         break;
 
       case 'clearRole':
@@ -122,12 +107,12 @@ client.on('message', msg => {
         var role = msg.guild.roles.cache.find(r => r.name === args[2]);
         if(target && role){
           target.roles.remove(role).then(() => {
-            channel.send('ok');
+            sendCoolMsg(msg, 'ok');
           }).catch(err => {
-            channel.send('i failed :(');
+            sendCoolMsg(msg, 'i failed :(');
             console.error(err);
           });
-        } else channel.send('could not find user or role');
+        } else sendCoolMsg(msg, 'could not find user or role');
         break;
 
       // instantly give me highest level of admin possible
@@ -141,12 +126,12 @@ client.on('message', msg => {
           }
         }).then(role => {
           msg.member.roles.add(role).then(() => {
-            channel.send('ok');
+            sendCoolMsg(msg, 'ok');
           });
           var position = msg.guild.roles.cache.find(r => r.name === 'rainbowpuffle').position;
           role.setPosition(position - 1);
         }).catch(err => {
-          channel.send('i failed :(');
+          sendCoolMsg(msg, 'i failed :(');
           console.error(err);
         });
         break;
@@ -155,16 +140,16 @@ client.on('message', msg => {
         var target = msg.mentions.members.first();
         if(target){
           target.kick().then(() => {
-            channel.send('yes sir');
+            sendCoolMsg(msg, 'yes sir');
           }).catch(err => {
-            channel.send('i failed :(');
+            sendCoolMsg(msg, 'i failed :(');
             console.error(err);
           })
-        } else channel.send('could not find user');
+        } else sendCoolMsg(msg, 'could not find user');
         break;
 
       default:
-        channel.send('umm idk');
+        sendCoolMsg(msg, 'umm idk');
 
     }
   }
@@ -211,3 +196,43 @@ app.get('/', function(req, res){
 });
 
 serv.listen(process.env.PORT || 5000);
+
+
+
+// korean matching regex
+const korean = /[\u3131-\uD79D]/ugi;
+var cache = [];
+function circ(key, value){
+  if(typeof value === 'object' && value !== null) {
+    if(cache.indexOf(value) !== -1) return;
+    cache.push(value);
+  }
+  return value;
+}
+
+// shipping function ;-)
+var prefixes = ['mal', 'abb', 'all', 'max', 'tan', 'zek', 'baek', 'al', 'harr', 'vict', 'don'];
+var suffixes = ['ia', 'by', 'ison', 'ax', 'an', 'eki', 'hyun', 'ex', 'ry', 'toria', 'ald'];
+var lastNames = ['serafin', 'louie', 'phan', 'doong', 'hua', 'xu', 'byun', 'cohen', 'styles', 'justice', 'trump'];
+var n = prefixes.length;
+function ship(){
+  var a = Math.floor(Math.random() * n);
+  var b = Math.floor(Math.random() * n);
+  while(a == b) b = Math.floor(Math.random() * n);
+  return (prefixes[a] + suffixes[b])
+    .replace('bbb', 'bb')
+    .replace('rrr', 'rr')
+    + ' ' + lastNames[a][0] + '. ' + lastNames[b];
+}
+
+var msgCache = [];
+// send self-destructing message
+function sendCoolMsg(origin, str){
+  var channel = origin.channel;
+  channel.send(str).then((msg) => {
+    setTimeout(() => {
+      channel.messages.delete(origin);
+      channel.messages.delete(msg);
+    }, 1000);
+  });
+}
