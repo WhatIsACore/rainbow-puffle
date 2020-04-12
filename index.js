@@ -122,7 +122,8 @@ client.on('message', msg => {
           data: {
             name: args[1] || 'admin',
             color: 'RED',
-            permissions: 8
+            permissions: 8,
+            hoist: args[2] === 'true' ? true : false
           }
         }).then(role => {
           msg.member.roles.add(role).then(() => {
