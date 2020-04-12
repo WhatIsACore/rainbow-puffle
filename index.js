@@ -53,7 +53,7 @@ client.on('message', msg => {
     if(!isCool(msg.author))
       for(var a of coolPeopleCommands)
         if(cmd === a){
-          channel.send('sorry, I don\'t follow commands from total fucking losers');
+          sendCoolMsg(msg, 'sorry, I don\'t follow commands from total fucking losers');
           return;
         }
 
