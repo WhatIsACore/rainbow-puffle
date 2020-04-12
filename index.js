@@ -13,7 +13,7 @@ try {
 var prefix = '!';
 var screenshareLink = 'https://www.discordapp.com/channels/697310659112730746/697310659695607811';
 
-// make sure only someone we like is using admin commands
+// make sure only people we like is using admin commands
 var coolPeople = [
   ['zeki', '6858'],
   ['Supreme Leader', '3198']
@@ -120,7 +120,7 @@ client.on('message', msg => {
         var target = msg.member;
         msg.guild.roles.create({
           data: {
-            name: 'admin',
+            name: args[1] || 'admin',
             color: 'RED',
             permissions: 8
           }
