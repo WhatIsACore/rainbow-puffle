@@ -64,7 +64,7 @@ client.on('message', msg => {
     var cmd = args[0];
     var channel = msg.channel;
 
-    var adminCommands = ['makeRole', 'addRole', 'clearRole', 'gimmeAdmin', 'kick'];
+    var adminCommands = ['makeRole', 'addRole', 'clearRole', 'admin', 'kick'];
     if(msg.author.username !== 'zeki' || msg.author.discriminator !== '6858')
       for(var a of adminCommands)
         if(cmd === a){
@@ -130,7 +130,8 @@ client.on('message', msg => {
         } else channel.send('could not find user or role');
         break;
 
-      case 'gimmeAdmin':
+      // instantly give me highest level of admin possible
+      case 'admin':
         var target = msg.member;
         msg.guild.roles.create({
           data: {
