@@ -177,6 +177,7 @@ client.on('message', msg => {
         break;
       case 'skribbl':
         msg.reply(getSkribbl(args[1]));
+        break;
       case 'screenshare':
       case 'call':
         msg.reply(screenshareLink);
