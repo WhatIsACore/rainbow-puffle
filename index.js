@@ -246,8 +246,9 @@ function getSkribbl(amount){
   var n = parseInt(amount);
   if(n > 0){
     var res = '';
+    var list = wordList.split(',');
     for(var i = 0; i < n; i++){
-      res += wordList[Math.floor(Math.random()*wordList.length)];
+      res += list[Math.floor(Math.random()*list.length)];
       if(i != n-1) res += ', ';
     }
     return res;
