@@ -152,7 +152,7 @@ client.on('message', msg => {
       case 'repeat':
         sendCoolMsg(msg, 'yes sir');
         setTimeout(() => {
-          channel.send(msg.substring(8));
+          channel.send(msg.content.substring(8));
         }, 500);
         break;
 
