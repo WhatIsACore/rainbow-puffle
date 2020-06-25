@@ -149,6 +149,13 @@ client.on('message', msg => {
         } else sendCoolMsg(msg, 'could not find user');
         break;
 
+      case 'repeat':
+        sendCoolMsg(msg, 'yes sir');
+        setTimeout(() => {
+          channel.send(msg.substring(8));
+        }, 500);
+        break;
+
       default:
         sendCoolMsg(msg, 'umm idk');
 
