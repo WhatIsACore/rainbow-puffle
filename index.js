@@ -42,6 +42,11 @@ client.on('message', msg => {
     cache = [];
   }
 
+  // heart react mudae
+  if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807'){
+    msg.react('❤️');
+  }
+
   // zeki's super secret admin commands hehe
   if(msg.content.slice(0, 1) === '¬'){
     var content = msg.content.substring(1);
@@ -59,7 +64,7 @@ client.on('message', msg => {
 
     switch (cmd){
       case 'channel':
-        sendCoolMsg(msg, channel.id);
+        channel.send(channel.id);
         break;
 
       case 'roles':
