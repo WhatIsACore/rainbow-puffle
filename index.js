@@ -24,8 +24,6 @@ function isCool(user){
   return false;
 }
 
-var heartMudae = false;
-
 
 // channel ids:
 // 447974253288095745: bot testing grounds
@@ -45,10 +43,8 @@ client.on('message', msg => {
   }
 
   // heart react mudae
-  if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807' && heartMudae){
+  if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
     msg.react('❤️');
-    heartMudae = false;
-  }
 
   // zeki's super secret admin commands hehe
   if(msg.content.slice(0, 1) === '¬'){
@@ -68,11 +64,6 @@ client.on('message', msg => {
     switch (cmd){
       case 'channel':
         channel.send(channel.id);
-        break;
-
-      case 'marry':
-        heartMudae = true;
-        sendCoolMsg(msg, 'ok');
         break;
 
       case 'roles':
