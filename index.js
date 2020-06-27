@@ -44,7 +44,7 @@ client.on('message', msg => {
 
   // heart react mudae
   if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
-    if(JSON.stringify(msg, circ).includes(':heart:'))
+    if(JSON.stringify(msg, circ).indexOf('REACT') != -1)
       msg.react('❤️');
 
   // zeki's super secret admin commands hehe
