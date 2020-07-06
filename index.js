@@ -176,7 +176,7 @@ client.on('message', msg => {
 
     switch (cmd){
       case 'help':
-        msg.reply('hahahahaha fuck you');
+        msg.reply('haha fucking loser');
         break;
       case 'ping':
         msg.reply('pong');
