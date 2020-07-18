@@ -35,6 +35,9 @@ function process(msg, content){
     case 'leaderboard':
       database.leaderboard(msg);
       break;
+    case 'L':
+      database.countL(msg);
+      break;
     default:
       msg.reply('idk what that means, try ' + prefix + 'help');
   }

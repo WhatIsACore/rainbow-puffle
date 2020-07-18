@@ -34,6 +34,15 @@ function addL(msg){
 }
 module.exports.addL = addL;
 
+function countL(msg){
+  var tag = msg.mentions.users.first().tag;
+  client.hmget('scoreboard', tag, (err, reply) => {
+    var res = reply[0] == null ? 0 : reply[0];
+    msg.reply(tag + ' has taken ' + res + (res === 1 ? 'L' : 'Ls') + '.');
+  });
+}
+module.exports.countL = countL;
+
 function leaderboard(msg){
   client.hgetall('scoreboard', (err, reply) => {
     var leaderboard = Object.keys(reply).map(key => {
