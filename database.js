@@ -22,13 +22,14 @@ function addL(msg){
   var tag = msg.mentions.users.first().tag;
   client.hmget('scoreboard', tag, (err, reply) => {
     var res = reply[0] == null ? 1 : Number(reply[0]) + 1;
+    var username = tag.split('#')[0];
     if(res == 1){
       client.hmset('scoreboard', tag, '1');
-      msg.channel.send('<@' + tag + '> took their first L. total: 1');
+      msg.channel.send(username + ' took their first L. total: 1');
     } else {
       res = Number(res);
       client.hmset('scoreboard', tag, res.toString());
-      msg.channel.send('<@' + tag + '> took another L. total: ' + res);
+      msg.channel.send(username + ' took another L. total: ' + res);
     }
   });
 }
@@ -36,10 +37,13 @@ module.exports.addL = addL;
 
 function countL(msg){
   var user = msg.mentions.users.first();
-  var tag = user == null ? msg.author.tag : user.tag;
-  client.hmget('scoreboard', tag, (err, reply) => {
+  if(user == null) user = msg.author;
+  client.hmget('scoreboard', user.tag, (err, reply) => {
     var res = reply[0] == null ? 0 : reply[0];
-    msg.reply(tag + ' has taken ' + res + (res === 1 ? ' L' : ' Ls') + '.');
+    msg.reply(
+      (user == msg.author ? 'you have' : user.username + ' has')
+       + ' taken ' + res + (res === 1 ? ' L' : ' Ls') + '.'
+    );
   });
 }
 module.exports.countL = countL;
