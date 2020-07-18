@@ -35,7 +35,8 @@ function addL(msg){
 module.exports.addL = addL;
 
 function countL(msg){
-  var tag = msg.mentions.users.first().tag;
+  var user = msg.mentions.users.first();
+  var tag = user == null ? msg.author.tag : user.tag;
   client.hmget('scoreboard', tag, (err, reply) => {
     var res = reply[0] == null ? 0 : reply[0];
     msg.reply(tag + ' has taken ' + res + (res === 1 ? ' L' : ' Ls') + '.');
