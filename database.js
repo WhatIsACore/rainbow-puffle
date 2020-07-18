@@ -24,11 +24,11 @@ function addL(msg){
     var res = reply[0] == null ? 1 : Number(reply[0]) + 1;
     if(res == 1){
       client.hmset('scoreboard', tag, '1');
-      msg.channel.send('<' + tag + '> took their first L. total: 1');
+      msg.channel.send('<@' + tag + '> took their first L. total: 1');
     } else {
       res = Number(res);
       client.hmset('scoreboard', tag, res.toString());
-      msg.channel.send('<' + tag + '> took another L. total: ' + res);
+      msg.channel.send('<@' + tag + '> took another L. total: ' + res);
     }
   });
 }
