@@ -35,7 +35,7 @@ client.on('message', msg => {
       msg.react('❤️');
 
     if(msg.content.indexOf('Congratulations, you won an uncommon nothing.') != -1)
-      database.addL(msg);
+      database.addL(msg.mentions.users.first(), msg.channel);
   }
 
   // zeki's super secret admin commands hehe

@@ -35,8 +35,11 @@ function process(msg, content){
     case 'leaderboard':
       database.leaderboard(msg);
       break;
+    case 'score':
+      database.score(msg);
+      break;
     case 'L':
-      database.countL(msg);
+      database.giveL(msg);
       break;
     default:
       msg.reply('idk what that means, try ' + prefix + 'help');
