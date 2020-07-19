@@ -38,9 +38,9 @@ function process(msg, content){
     case 'score':
       database.score(msg);
       break;
-    case 'L':
-      database.giveL(msg);
-      break;
+    //case 'L':
+      //database.giveL(msg);
+      //break;
     default:
       msg.reply('idk what that means, try ' + prefix + 'help');
   }
