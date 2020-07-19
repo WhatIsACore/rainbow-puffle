@@ -24,10 +24,10 @@ function addL(user, channel){
     var res = reply[0] == null ? 1 : Number(reply[0]) + 1; // user may not be in the database yet.
     if(res == 1){
       client.hmset('scoreboard', user.tag, '1');
-      msg.channel.send(user.username + ' took their first L. total: 1');
+      channel.send(user.username + ' took their first L. total: 1');
     } else {
       client.hmset('scoreboard', user.tag, res.toString());
-      msg.channel.send(user.username + ' took another L. total: ' + res);
+      channel.send(user.username + ' took another L. total: ' + res);
     }
   });
 }
