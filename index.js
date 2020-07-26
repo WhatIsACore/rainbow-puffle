@@ -30,13 +30,13 @@ client.on('message', msg => {
   }
 
   // heart react mudae
-  if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807'){
+  if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
     if(JSON.stringify(msg, circ).indexOf('REACT with') != -1)
       msg.react('❤️');
 
+  if((msg.author.username === 'Mudae' && msg.author.discriminator === '0807') || (msg.author.username === 'Mudamaid 56' && msg.author.discriminator === '3601'))
     if(msg.content.indexOf('Congratulations, you won an uncommon nothing.') != -1)
       database.addL(msg.mentions.users.first(), msg.channel);
-  }
 
   // zeki's super secret admin commands hehe
   if(msg.content.slice(0, 1) === admin.prefix){
