@@ -23,12 +23,14 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 
-  // complain whenever Groovy plays kpop
+  // complain whenever Groovy plays kpop & praise whenever Groovy plays japanese music
   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
-    if(JSON.stringify(msg, circ).match(korean) != null) msg.channel.send('ew kpop ;(');
+    if(JSON.stringify(msg, circ).match(korean_char) != null) msg.channel.send('ew kpop ;(');
+    cache = [];
+    if(JSON.stringify(msg, circ).match(japanese_char) != null) msg.channel.send('Arigato, senpai!');
     cache = [];
   }
-
+  
   // heart react mudae
   if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
     if(JSON.stringify(msg, circ).indexOf('REACT with') != -1)
@@ -67,7 +69,8 @@ serv.listen(config.PORT || 5000);
 
 
 // korean matching regex
-const korean =/[\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7AF\uD7B0-\uD7FF]/ugi;
+const korean_char =/[\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7AF\uD7B0-\uD7FF]/ugi;
+const japanese_char =/[\u3000-\u303f\u3040-\u309f]/ugi;
 var cache = [];
 function circ(key, value){
   if(typeof value === 'object' && value !== null) {
