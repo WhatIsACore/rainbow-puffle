@@ -67,7 +67,7 @@ serv.listen(config.PORT || 5000);
 
 
 // korean matching regex
-const korean = /[\u3131-\uD79D]/ugi;
+const korean = /[\u3131-\u318F]/ugi;
 var cache = [];
 function circ(key, value){
   if(typeof value === 'object' && value !== null) {
