@@ -23,18 +23,14 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 
-  // complain whenever Groovy plays kpop
+  // complain whenever Groovy plays kpop & praise whenever Groovy plays japanese music
   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
     if(JSON.stringify(msg, circ).match(korean) != null) msg.channel.send('ew kpop ;(');
     cache = [];
+    if(JSON.stringify(msg, circ).match(japanese_char) != null) msg.channel.send('Arigato, senpai!');
+     cache = [];
   }
   
-  // praise whenever Groovy plays japanese music
-   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
-    if(JSON.stringify(msg, circ).match(japanese_char) != null) msg.channel.send('Arigato, senpai!');
-    cache = [];
-  }
-
   // heart react mudae
   if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
     if(JSON.stringify(msg, circ).indexOf('REACT with') != -1)
