@@ -33,6 +33,11 @@ function process(msg, content){
     case 'channel':
       channel.send(channel.id);
       break;
+    case 'matchUser':
+      channel.send(msg.channel.members.filter((member) => {
+        return member.user.username == args[1]
+      }).first().user.tag);
+      break;
     case 'giveL':
       database.giveL(msg, args[2]);
       break;

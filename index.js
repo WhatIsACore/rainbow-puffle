@@ -46,7 +46,7 @@ client.on('message', msg => {
         var nickname = msg.content.split('\n').pop().split(' ')[0].slice(0, -1);
         loser = msg.channel.members.filter((member) => {
           return member.user.username == nickname
-        }).first();
+        }).first().user;
       }
       database.addL(loser, msg.channel);
     }
