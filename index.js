@@ -27,18 +27,29 @@ client.on('message', msg => {
   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
     if(JSON.stringify(msg, circ).match(korean_char) != null) msg.channel.send('ew kpop ;(');
     cache = [];
-    if(JSON.stringify(msg, circ).match(japanese_char) != null) msg.channel.send('Arigato, senpai!');
+    if(JSON.stringify(msg, circ).match(japanese_char) != null) msg.channel.send('uwu, jpop :>');
     cache = [];
   }
-  
+
   // heart react mudae
   if(msg.author.username === 'Mudae' && msg.author.discriminator === '0807')
     if(JSON.stringify(msg, circ).indexOf('REACT with') != -1)
       msg.react('❤️');
 
+  // L tracker
   if((msg.author.username === 'Mudae' && msg.author.discriminator === '0807') || (msg.author.username === 'Mudamaid 56' && msg.author.discriminator === '3601'))
-    if(msg.content.indexOf('Congratulations, you won an uncommon nothing.') != -1)
-      database.addL(msg.mentions.users.first(), msg.channel);
+    if(msg.content.indexOf('Congratulations, you won an uncommon nothing.') != -1){
+      var loser;
+      if(msg.mentions.users.first() != null){
+        loser = msg.mentions.users.first();
+      } else {
+        var nickname = msg.content.split(' ')[0].slice(0, -1);
+        loser = msg.channel.members.filter((member) => {
+          return member.user.username == nickname
+        }).first();
+      }
+      database.addL(loser, msg.channel);
+    }
 
   // zeki's super secret admin commands hehe
   if(msg.content.slice(0, 1) === admin.prefix){

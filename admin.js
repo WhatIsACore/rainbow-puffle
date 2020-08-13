@@ -23,7 +23,7 @@ function process(msg, content){
   if(!isCool(msg.author))
     for(var a of coolPeopleCommands)
       if(cmd === a){
-        sendCoolMsg(msg, 'sorry, I don\'t follow commands from total fucking losers');
+        sendCoolMsg(msg, 'sorry, I don\'t follow commands from losers');
         return;
       }
 
