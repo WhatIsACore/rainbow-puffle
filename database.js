@@ -44,7 +44,7 @@ function giveL(msg, amount){
 
   // check if the giver has ability to give an L
   client.hmget('scoreboard', target.tag, (err, reply) => {
-    var res = reply[0] == null ? 1 : Number(reply[0]) + amount;
+    var res = reply[0] == null ? 1 : Number(reply[0]) + Number(amount);
     client.hmset('scoreboard', target.tag, res.toString());
     msg.channel.send(`gave ${target.username} ${amount} ${amount == 1 ? 'L' : 'Ls'}. total: ${res}`);
   });
