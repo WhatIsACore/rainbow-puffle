@@ -43,7 +43,7 @@ client.on('message', msg => {
       if(msg.mentions.users.first() != null){
         loser = msg.mentions.users.first();
       } else {
-        var nickname = msg.content.split(' ')[0].slice(0, -1);
+        var nickname = msg.content.split('\n').pop().split(' ')[0].slice(0, -1);
         loser = msg.channel.members.filter((member) => {
           return member.user.username == nickname
         }).first();

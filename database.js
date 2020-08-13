@@ -21,7 +21,7 @@ client.on('connect', () => {
 // add an L to a user.
 function addL(user, channel){
   client.hmget('scoreboard', user.tag, (err, reply) => {
-    var res = reply[0] == null ? 1 : Number(reply[0]) + 1; // user may not be in the database yet.
+    var res = reply == null ? 1 : Number(reply[0]) + 1; // user may not be in the database yet.
     if(res == 1){
       client.hmset('scoreboard', user.tag, '1');
       channel.send(user.username + ' took their first L. total: 1');
