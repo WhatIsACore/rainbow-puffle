@@ -33,26 +33,20 @@ function addL(user, channel){
 }
 module.exports.addL = addL;
 
-function giveL(msg){
+function giveL(msg, amount){
   var target = msg.mentions.users.first();
   if(target == null){
     msg.reply('you have to say who to give it to');
     return;
   }
+
+  if(Number(amount) == NaN) amount = 1;
+
   // check if the giver has ability to give an L
-  client.hmget('giveTimer', msg.author.tag, (err, reply) => {
-    if(reply[0] == null || Date.now() - reply[0] > (1000 * 60 * 60 * 24)){
-      // give an L
-      client.hmget('scoreboard', target.tag, (err, reply) => {
-        var res = reply[0] == null ? 1 : Number(reply[0]) + 1;
-        client.hmset('scoreboard', target.tag, res.toString());
-        msg.channel.send(msg.author.username + ' gave ' + target.username + ' an L. total: ' + res);
-      });
-    } else {
-      // give the L to the person who attempted it instead
-      addL(msg.author, msg.channel);
-    }
-    client.hmset('giveTimer', msg.author.tag, Date.now());
+  client.hmget('scoreboard', target.tag, (err, reply) => {
+    var res = reply[0] == null ? 1 : Number(reply[0]) + amount;
+    client.hmset('scoreboard', target.tag, res.toString());
+    msg.channel.send(`gave ${target.username} ${amount} ${amount == 1 ? 'L' : 'Ls'}. total: ${res}`);
   });
 }
 module.exports.giveL = giveL;

@@ -4,6 +4,8 @@
 var prefix = '¬';
 module.exports.prefix = prefix;
 
+let database = require('./database');
+
 // make sure only authorized people use admin commands
 var coolPeople = [
   ['zeki', '6858'],
@@ -30,6 +32,9 @@ function process(msg, content){
   switch (cmd){
     case 'channel':
       channel.send(channel.id);
+      break;
+    case 'giveL':
+      database.giveL(msg, args[2]);
       break;
     case 'roles':
       sendCoolMsg(msg, roles(msg));
