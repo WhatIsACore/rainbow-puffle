@@ -31,6 +31,7 @@ function process(msg, content){
       break;
     case 'tanratz':
       msg.reply(getTanRatz(args[1]));
+      break;
     case 'leaderboard':
       database.leaderboard(msg);
       break;
@@ -77,6 +78,6 @@ function getTanRatz(amount){
     }
     return res;
   } else {
-    return wordList;
+    return tanratz;
   }
 }
