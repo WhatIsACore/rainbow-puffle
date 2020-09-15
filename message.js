@@ -37,12 +37,12 @@ function process(msg, content){
       break;
     case 'fujimoto':
       msg.channel.send({
-        files: ['https://imgur.com/VO6x4ch']
+        files: ['https://i.imgur.com/VO6x4ch.png']
       });
       break;
     case 'interesting':
       msg.channel.send({
-        files: ['https://imgur.com/ekiVU6G']
+        files: ['https://i.imgur.com/ekiVU6G.jpg']
       });
       break;
     case 'score':
