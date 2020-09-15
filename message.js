@@ -36,10 +36,14 @@ function process(msg, content){
       database.leaderboard(msg);
       break;
     case 'fujimoto':
-      msg.reply('https://imgur.com/VO6x4ch');
+      msg.channel.send({
+        files: ['https://imgur.com/VO6x4ch']
+      });
       break;
     case 'interesting':
-      msg.reply('https://imgur.com/ekiVU6G');
+      msg.channel.send({
+        files: ['https://imgur.com/ekiVU6G']
+      });
       break;
     case 'score':
       database.score(msg);
