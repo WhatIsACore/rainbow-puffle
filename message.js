@@ -74,7 +74,7 @@ function ship(msg){
   var generator = rseed.create(seed);
   var list = people.split(',');
   var res = list[generator.intBetween(0, list.length - 1)];
-  msg.channel.send(`${target.toString()}'s soulmate is ${res}!`);
+  msg.channel.send(`${target.toString()}'s soulmate is ${res}! 💖`);
 }
 
 // dictionary word generator
