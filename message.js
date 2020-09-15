@@ -70,7 +70,7 @@ function ship(msg){
     target = msg.author;
 
   var d = new Date();
-  var seed = d.getMonth() + d.getDate() + d.getFullYear() + msg.author.id;
+  var seed = d.getMonth() + d.getDate() + d.getFullYear() + target.id;
   var generator = rseed.create(seed);
   var list = people.split(',');
   var res = list[generator.intBetween(0, list.length - 1)];
