@@ -50,6 +50,7 @@ function process(msg, content){
       break;
     case 'ship':
       msg.reply(ship(msg));
+      break;
     //case 'L':
       //database.giveL(msg);
       //break;
@@ -72,7 +73,7 @@ function ship(msg){
   var seed = d.getMonth() + d.getDate() + d.getFullYear() + msg.author.id;
   var generator = rseed.create(seed);
   var list = people.split(',');
-  var res = people[generator.intBetween(0, list.length - 1)];
+  var res = list[generator.intBetween(0, list.length - 1)];
   msg.channel.send(`${target.toString()}'s soulmate is ${res}!'`);
 }
 
