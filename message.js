@@ -51,6 +51,9 @@ function process(msg, content){
     case 'ship':
       ship(msg);
       break;
+    case 'count':
+      count(msg);
+      break;
     //case 'L':
       //database.giveL(msg);
       //break;
@@ -110,4 +113,37 @@ function getTanRatz(amount){
   } else {
     return tanratz;
   }
+}
+
+async function count(msg){
+  var target = msg.mentions.users.first();
+  var args = msg.content.split(' ');
+
+  if(target == null){
+    target = msg.author;
+    if(args.length !== 2)
+      return msg.channel.send('you did that wrong');
+  } else if(args.length !== 3)
+    return msg.channel.send('you did that wrong');
+
+  var query = args[args.length - 1];
+
+  var promises = [];
+  var count = 0;
+  var channels = msg.guild.channels.cache.forEach(c => {
+    promises.push(new Promise(async (resolve, reject) => {
+      if(c.type != 'text')
+        return resolve();
+      var messages = await c.messages.fetch();
+      messages = await messages.filter(m => m.author.id === target.id && msg.content.indexOf(query) > -1);
+      messages.map(m => {
+        count += m.content.split(query).length - 1;
+      });
+      resolve();
+    }));
+  });
+
+  await Promise.all(promises);
+  msg.channel.send(count);
+
 }
