@@ -55,7 +55,7 @@ function process(msg, content){
       //database.giveL(msg);
       //break;
     default:
-      msg.reply('idk what that means, try ' + prefix + 'help');
+      msg.reply('idk what that means');
   }
 }
 module.exports.process = process;

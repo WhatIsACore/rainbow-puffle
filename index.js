@@ -51,6 +51,12 @@ client.on('message', msg => {
       database.addL(loser, msg.channel);
     }
 
+  // interesting
+  if(msg.content.toLowerCase() == 'interesting')
+    msg.channel.send({
+      files: ['https://i.imgur.com/ekiVU6G.jpg']
+    });
+
   // zeki's super secret admin commands hehe
   if(msg.content.slice(0, 1) === admin.prefix){
     var content = msg.content.substring(1);
