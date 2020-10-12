@@ -132,14 +132,18 @@ async function count(msg){
   var count = 0;
   var channels = msg.guild.channels.cache.forEach(c => {
     promises.push(new Promise(async (resolve, reject) => {
-      if(c.type != 'text')
-        return resolve();
-      var messages = await c.messages.fetch();
-      messages = await messages.filter(m => m.author.id === target.id && msg.content.indexOf(query) > -1);
-      messages.map(m => {
-        count += m.content.split(query).length - 1;
-      });
-      resolve();
+      try {
+        if(c.type != 'text')
+          return resolve();
+        var messages = await c.messages.fetch();
+        messages = await messages.filter(m => m.author.id === target.id && msg.content.indexOf(query) > -1);
+        messages.map(m => {
+          count += m.content.split(query).length - 1;
+        });
+        resolve();
+      } catch(e) {
+        resolve();
+      }
     }));
   });
 
