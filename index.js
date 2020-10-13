@@ -53,8 +53,17 @@ client.on('message', msg => {
 
   // interesting
   if(msg.content.toLowerCase() == 'interesting')
+    if(msg.author.username === 'fuji_rinngo' && msg.author.discriminator === '9845'){
+      msg.channel.send({
+        files: ['https://i.imgur.com/ekiVU6G.jpg']
+      });
+    } else msg.channel.send({
+      files: ['https://i.imgur.com/VZfswTP.jpg']
+    });
+
+  if(msg.content.toLowerCase() == 'inch resting')
     msg.channel.send({
-      files: ['https://i.imgur.com/ekiVU6G.jpg']
+      files: ['https://i.imgur.com/hNfmUVt.jpg']
     });
 
   // zeki's super secret admin commands hehe
