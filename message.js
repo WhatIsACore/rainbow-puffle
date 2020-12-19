@@ -48,6 +48,11 @@ function process(msg, content){
         files: ['https://i.imgur.com/ekiVU6G.jpg']
       });
       break;
+    case 'pogchamp':
+      msg.channel.send({
+        files: ['./files/childe.mp4']
+      });
+      break;
     case 'ship':
       ship(msg);
       break;

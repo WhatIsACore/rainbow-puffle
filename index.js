@@ -66,7 +66,7 @@ client.on('message', msg => {
       files: ['https://i.imgur.com/hNfmUVt.jpg']
     });
 
-  // zeki's super secret admin commands hehe
+  // zeki's super secret admin commands
   if(msg.content.slice(0, 1) === admin.prefix){
     var content = msg.content.substring(1);
     admin.process(msg, content);
