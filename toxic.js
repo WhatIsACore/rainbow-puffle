@@ -20,7 +20,8 @@ async function analyze(msg){
 
   results.forEach((i) => {
     if(i.results[0].match){
-      if(i.label == 'toxicity') msg.react('👎');
+      if(i.label == 'toxicity') msg.react('❌');
+      if(i.label == 'sexual_explicit') msg.react('🤮');
     }
   });
 }
