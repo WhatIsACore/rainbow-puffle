@@ -18,9 +18,11 @@ async function analyze(msg){
   const results = await model.classify(inputs);
   var res = '```\n';
 
+  var toxicReacts = ['👎', '❌', '🙅‍♂️', '🙅‍♀️', '⚠️'];
+
   results.forEach((i) => {
     if(i.results[0].match){
-      if(i.label == 'toxicity') msg.react('❌');
+      if(i.label == 'toxicity') msg.react(toxicReacts[Math.floor(Math.random() * toxicReacts.length)]);
       if(i.label == 'sexual_explicit') msg.react('🤮');
     }
   });
