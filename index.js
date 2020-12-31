@@ -23,9 +23,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if(msg.channel == '697310659695607810' && !msg.author.bot) {
-    toxic.analyze(msg);
-  }
+  if(
+    !msg.author.bot &&
+    msg.content.slice(0, 1) !== message.prefix &&
+    msg.content.slice(0, 1) !== '$'
+  ) toxic.analyze(msg);
 
   // complain whenever Groovy plays kpop & praise whenever Groovy plays japanese music
   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
