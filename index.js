@@ -8,6 +8,7 @@ const client = new Discord.Client();
 let message = require('./message');
 let admin = require('./admin');
 let database = require('./database');
+let toxic = require('./toxic');
 
 var config;
 try {
@@ -22,6 +23,9 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  if(msg.channel == '697310659695607810' && !msg.author.bot) {
+    toxic.analyze(msg);
+  }
 
   // complain whenever Groovy plays kpop & praise whenever Groovy plays japanese music
   if(msg.author.username === 'Groovy' && msg.author.discriminator === '7254'){
