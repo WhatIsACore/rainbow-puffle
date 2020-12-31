@@ -21,8 +21,9 @@ async function analyze(msg){
   var toxicReacts = ['👎', '❌', '🙅‍♂️', '🙅‍♀️', '⚠️'];
 
   results.forEach((i) => {
-    if(i.results[0].match){
+    if(i.results[0].match != false){
       if(i.label == 'toxicity') msg.react(toxicReacts[Math.floor(Math.random() * toxicReacts.length)]);
+      if(i.label == 'severe_toxicity') msg.react('😱');
       if(i.label == 'sexual_explicit') msg.react('🤮');
     }
   });
