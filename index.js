@@ -79,6 +79,12 @@ client.on('message', msg => {
   }
 });
 
+// kick stephen if he ever tries to join genshin impact
+client.on('guildMemberAdd', member => {
+  if(member.id == '569391974881165351' && member.guild.id == '743690697952985130')
+    member.kick('no');
+});
+
 client.login(config.token);
 
 // web server to send requests and make heroku happy
