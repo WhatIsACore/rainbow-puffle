@@ -1,3 +1,0 @@
-# rainbow-puffle
-
-best bot
