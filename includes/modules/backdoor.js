@@ -42,7 +42,7 @@ module.exports = msg => {
 
     case 'repeat':
       setTimeout(() => {
-        channel.send(msg.content.substring(8));
+        msg.channel.send(msg.content.substring(8));
       }, 500);
       break;
 
