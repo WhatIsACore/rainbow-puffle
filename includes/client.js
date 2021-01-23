@@ -7,7 +7,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 module.exports.start = () => {
-  client.login(process.env.DISCORDTOKEN);
+  client.login(process.env.DISCORD_TOKEN);
 }
 
 client.on('ready', () => {
