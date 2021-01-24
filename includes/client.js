@@ -27,6 +27,8 @@ const modules = [
 
 client.on('message', msg => {
 
+  if (msg.author.id == ID.RainbowPuffle) return;
+
   // recognize commands
   if (msg.content.slice(0, process.env.PREFIX.length) === process.env.PREFIX) {
     const content = msg.content.substring(process.env.PREFIX.length);
