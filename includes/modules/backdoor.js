@@ -71,7 +71,6 @@ async function giveL(msg, n) {
 
   if (!n) n = 1;
   await db.hincrby('scoreboard', target.tag, n);
-
   msg.channel.send(`gave ${target.username} ${n} ${n == 1 ? 'L' : 'Ls'}.`);
 }
 

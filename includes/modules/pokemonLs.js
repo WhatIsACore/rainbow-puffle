@@ -19,7 +19,7 @@ module.exports = msg => {
   if (msg.content.indexOf('Congratulations, you won an uncommon nothing.') != -1) {
     // find the loser
     let loser;
-    if (msg.mentions.users.first() != null) {
+    if (msg.mentions.users.first()) {
       loser = msg.mentions.users.first();
     } else {
       let nickname = msg.content.split('\n').pop().split(' ')[0].slice(0, -1);
@@ -28,7 +28,7 @@ module.exports = msg => {
       }).first().user;
     }
     // give them an L
-    const score = db.hincr('scoreboard', loser.tag, 1).then(() => {
+    db.hincr('scoreboard', loser.tag, 1).then(score => {
       msg.channel.send(
         loser.username + (score == 1 ? ' took their first L. total: 1' : ` took another L. total: ${score}`)
       );

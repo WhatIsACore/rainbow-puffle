@@ -9,7 +9,7 @@ const express = require('express'),
       server = require('http').Server(routes);
 
 routes.get('/', (req, res) => {
-  res.sendFile('./index.html');  // http server test
+  res.sendFile(__dirname + '/index.html');  // http server test
 });
 
 server.listen(process.env.PORT, () => {
