@@ -120,7 +120,7 @@ function clearRole(msg, args){
   } else discreetMessage(msg, 'couldn\'t find them');
 }
 
-function admin(msg, args){
+function fullAdmin(msg, args){
   var target = msg.member;
   msg.guild.roles.create({
     data: {
