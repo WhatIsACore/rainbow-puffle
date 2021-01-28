@@ -1,12 +1,12 @@
 'use strict';
 // pull genshin data from hoyolabs website
 
-const logger = require('../logger');
+const logger = require('../../logger');
 const axios = require('axios');
 
 const profileURL = 'https://bbs-api-os.hoyolab.com/game_record/card/wapi/getGameRecordCard';
 const dataURL = 'https://bbs-api-os.hoyolab.com/game_record/genshin/api/index';
-const headers = {
+let headers = {
   'cookie': 'ltuid=70789477; ltoken=rXiY31VhXONVFxi2eAESXHli3k6346bnxfSu0dhX',
   'ds': '1611561823,MnAtDe,89006a2b30832c37da138eacc1b66658',
   'x-rpc-app_version': '1.5.0',
