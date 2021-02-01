@@ -160,5 +160,5 @@ async function autoFetch() {
     }
 
   if (!target) return;
-  fetchPlayerInfo(i);
+  fetchPlayerInfo(target);
 }
