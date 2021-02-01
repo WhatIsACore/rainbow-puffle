@@ -32,13 +32,13 @@ async function sendLeaderboard(msg, stat, title, displayMethod) {
   // sort the list
   let playerList = Object.keys(players);
   if (stat === 'spiral_abyss') {
-    playerList.sort((a, b) => {
-      let a_split = a.split('-');
-      let b_split = b.split('-');
-      let a_score = Number(a_split[0]) * 3 + Number(a_split[1]);
-      let b_score = Number(b_split[0]) * 3 + Number(b_split[1]);
-      return b_score - a_score;
-    });
+      playerList.sort((a, b) => {
+        let a_split = players[a].split('-');
+        let b_split = players[b].split('-');
+        let a_score = Number(a_split[0]) * 3 + Number(a_split[1]);
+        let b_score = Number(b_split[0]) * 3 + Number(b_split[1]);
+        return b_score - a_score;
+      });
   } else {
     playerList.sort((a, b) => {
       return players[b] - players[a];
