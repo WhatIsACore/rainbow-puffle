@@ -9,6 +9,6 @@ module.exports.client = client;
 
 // turn redis commands into promises
 const {promisify} = require('util');
-const commands = ['get', 'set', 'del', 'hget', 'hset', 'hgetall', 'hmset', 'incr', 'incrby', 'hincrby'];
+const commands = ['get', 'set', 'del', 'hget', 'hset', 'hdel', 'hgetall', 'hmset', 'incr', 'incrby', 'hincrby'];
 for (let c of commands)
   module.exports[c] = promisify(client[c].bind(client));

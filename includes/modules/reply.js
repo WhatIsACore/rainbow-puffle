@@ -3,6 +3,8 @@
 
 module.exports = msg => {
 
+  if (!msg.cmd) return;
+
   if (msg.cmd === 'help')
     msg.resolve('haha loser');
 
@@ -18,5 +20,5 @@ module.exports = msg => {
     });
     msg.resolve();
   }
-  
+
 }

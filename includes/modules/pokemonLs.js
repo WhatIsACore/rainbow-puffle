@@ -39,8 +39,8 @@ module.exports = msg => {
 
 
 async function showScore(msg){
-  var user = msg.mentions.users.first();
-  if(user == null) user = msg.author;
+  let user = msg.mentions.users.first();
+  if (user == null) user = msg.author;
 
   const reply = await db.hmget('scoreboard', user.tag);
   const score = reply[0] == null ? 0 : reply[0];

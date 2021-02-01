@@ -22,7 +22,9 @@ const modules = [
   require('./modules/groovy'),
   require('./modules/pokemonLs'),
   require('./modules/pogchamp'),
-  require('./modules/skribbl')
+  require('./modules/skribbl'),
+  require('./modules/genshin'),
+  require('./modules/heartMudae')
 ];
 
 client.on('message', msg => {

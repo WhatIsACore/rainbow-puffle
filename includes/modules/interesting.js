@@ -4,6 +4,7 @@
 const ID = require('../idList');
 
 module.exports = msg => {
+
   // as a command
   if (msg.cmd === 'interesting') {
     msg.channel.send({

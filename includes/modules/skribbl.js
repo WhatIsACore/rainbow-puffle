@@ -3,6 +3,8 @@
 
 module.exports = msg => {
 
+  if (!msg.cmd) return;
+
   if (msg.cmd === 'skribbl')
     sendSkribbl(hardSkribblList, msg);
 
