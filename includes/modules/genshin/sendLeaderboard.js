@@ -36,7 +36,7 @@ async function sendLeaderboard(msg, stat, title, displayMethod) {
       let a_split = a.split('-');
       let b_split = b.split('-');
       let a_score = Number(a_split[0]) * 3 + Number(a_split[1]);
-      let b_score = Number(a_split[0]) * 3 + Number(a_split[1]);
+      let b_score = Number(b_split[0]) * 3 + Number(b_split[1]);
       return b_score - a_score;
     });
   } else {
