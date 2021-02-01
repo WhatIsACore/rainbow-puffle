@@ -55,8 +55,6 @@ async function sendLeaderboard(msg, stat, title, displayMethod) {
     playerList[i].push(playerList[i][1] == playerList[i-1][1] ? playerList[i-1][2] : i+1);
   }
 
-  logger.info(playerList);
-
   playerList = playerList.map(displayMethod);
 
   const embed = embeds.createListEmbed(title, playerList, 10);

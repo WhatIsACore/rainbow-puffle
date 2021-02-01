@@ -23,8 +23,7 @@ const modules = [
   require('./modules/pokemonLs'),
   require('./modules/pogchamp'),
   require('./modules/skribbl'),
-  require('./modules/genshin'),
-  require('./modules/heartMudae')
+  require('./modules/genshin')
 ];
 
 client.on('message', msg => {

@@ -51,6 +51,8 @@ async function init() {
     for (const i in res) {
       cache[i] = JSON.parse(res[i]);
     }
+
+  setInterval(autoFetch, 5 * 60 * 1000);
 }
 module.exports.init = init;
 
@@ -147,3 +149,16 @@ async function fetchPlayerInfo(id) {
   return playerInfo;
 }
 module.exports.fetch = fetchPlayerInfo;
+
+// automatically fetch some results now and then to limit load
+async function autoFetch() {
+  let target;
+  for (let i in cache)
+    if (isExpired(cache[i])) {
+      target = i;
+      break;
+    }
+
+  if (!target) return;
+  fetchPlayerInfo(i);
+}
