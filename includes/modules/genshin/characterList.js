@@ -36,6 +36,7 @@ const list = [
   'Tartaglia',
   'Venti',
   'Xiangling',
+  'Xiao',
   'Xingqiu',
   'Xinyan',
   'Zhongli'

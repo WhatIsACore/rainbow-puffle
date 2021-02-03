@@ -108,7 +108,7 @@ async function fetchPlayerInfo(id) {
     res.chests_opened = luxurious_chests + precious_chests + exquisite_chests + common_chests;
 
     // spelling mistakes are intentional (they must match mihoyo's file names)
-    const characterList = ['Albedo','Ambor','Barbara','Beidou','Bennett','Chongyun','Diluc','Diona','Fischl','Ganyu','Kaeya','Keqing','Klee','Lisa','Mona','Ningguang','Noel','PlayerBoy','PlayerGirl','Qin','Qiqi','Razor','Sucrose','Tartaglia','Venti','Xiangling','Xingqiu','Xinyan','Zhongli'];
+    const characterList = ['Albedo','Ambor','Barbara','Beidou','Bennett','Chongyun','Diluc','Diona','Fischl','Ganyu','Kaeya','Keqing','Klee','Lisa','Mona','Ningguang','Noel','PlayerBoy','PlayerGirl','Qin','Qiqi','Razor','Sucrose','Tartaglia','Venti','Xiangling','Xiao','Xingqiu','Xinyan','Zhongli'];
     const corrections = {
       Ambor: 'Amber',
       Noel: 'Noelle',
