@@ -9,7 +9,8 @@ const characterList = require('./characterList');
 async function sendCharacterOwners(msg) {
   let loadMessage = await msg.channel.send('fetching...');
 
-  let character = characterList.get(msg.cArgs[1]);
+  msg.cArgs.shift();
+  let character = characterList.get(msg.cArgs.join(' '));
   if (!character) {
     loadMessage.edit('couldn\'t recognize that character.');
     return;

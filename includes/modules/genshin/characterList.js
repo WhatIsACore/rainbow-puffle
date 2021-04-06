@@ -21,7 +21,7 @@ const list = [
   'Diona',
   'Fischl',
   'Ganyu',
-  'Hu Tao',
+  'Hu tao',
   'Kaeya',
   'Keqing',
   'Klee',

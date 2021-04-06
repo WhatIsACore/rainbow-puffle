@@ -111,7 +111,7 @@ async function fetchPlayerInfo(id) {
     const characterList = ['Albedo','Ambor','Barbara','Beidou','Bennett','Chongyun','Diluc','Diona','Fischl','Ganyu','Hutao','Kaeya','Keqing','Klee','Lisa','Mona','Ningguang','Noel','PlayerBoy','PlayerGirl','Qin','Qiqi','Razor','Sucrose','Tartaglia','Venti','Xiangling','Xiao','Xingqiu','Xinyan','Zhongli'];
     const corrections = {
       Ambor: 'Amber',
-      Hutao: 'Hu Tao',
+      Hutao: 'Hu tao',
       Noel: 'Noelle',
       Qin: 'Jean',
       PlayerBoy: 'Traveller',
