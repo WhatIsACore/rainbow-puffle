@@ -21,6 +21,7 @@ const list = [
   'Diona',
   'Fischl',
   'Ganyu',
+  'Hu Tao',
   'Kaeya',
   'Keqing',
   'Klee',
@@ -32,6 +33,7 @@ const list = [
   'Jean',
   'Qiqi',
   'Razor',
+  'Rosaria',
   'Sucrose',
   'Tartaglia',
   'Venti',
@@ -47,6 +49,7 @@ const aliases = {
   childe: 'tartaglia',
   aether: 'traveller',
   lumine: 'traveller',
-  cocogoat: 'ganyu'
+  cocogoat: 'ganyu',
+  hutao: 'hu tao'
 };
 module.exports.aliases = aliases;

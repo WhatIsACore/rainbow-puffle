@@ -27,7 +27,7 @@ module.exports.createPlayerInfoEmbed = (playerInfo, type) => {
   switch (type) {
 
     case 'characters':
-      embed.setDescription(`${playerInfo.characters_unlocked} / 28 characters unlocked`);
+      embed.setDescription(`${playerInfo.characters_unlocked} / 31 characters unlocked`);
       let characters = Object.keys(playerInfo.characters);
       characters.sort((a, b) => {
         return playerInfo.characters[b] - playerInfo.characters[a];
