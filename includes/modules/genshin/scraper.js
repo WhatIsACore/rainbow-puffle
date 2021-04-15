@@ -9,12 +9,12 @@ const url = 'https://webstatic-sea.hoyolab.com/app/community-game-records-sea/in
 const cookies = [  // to pass to puppeteer
   {
     'name': 'ltuid',
-    'value': '110879284',
+    'value': '70789477',
     'domain': '.hoyolab.com'
   },
   {
     'name': 'ltoken',
-    'value': 'TZCntshtvGxav5tEmuVOReMZ30lZOjpul4pXupXP',
+    'value': 'rXiY31VhXONVFxi2eAESXHli3k6346bnxfSu0dhX',
     'domain': '.hoyolab.com'
   }
 ];
