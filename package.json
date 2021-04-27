@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "puppeteer": "^5.5.0",
     "random-seed": "^0.3.0",
-    "redis": "^3.0.2",
+    "redis": "^3.1.1",
     "winston": "^3.3.3"
   }
 }
