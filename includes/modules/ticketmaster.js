@@ -5,8 +5,8 @@ const puppeteer = require('puppeteer-extra');
 const client = require('../discordClient');
 const ID = require('../idList');
 
-//const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-//puppeteer.use(StealthPlugin());
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
 
 const url = 'https://www.ticketmaster.com/event/Z7r9jZ1Ad4vr8?tmrid=TMR-3541790';
 
