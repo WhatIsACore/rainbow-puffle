@@ -3,8 +3,7 @@
 const logger = require('./logger');
 const ID = require('./idList');
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = require('./discordClient')
 
 module.exports.start = () => {
   client.login(process.env.DISCORD_TOKEN);
@@ -19,11 +18,11 @@ const modules = [
   require('./modules/reply'),
   require('./modules/backdoor'),
   require('./modules/interesting'),
-  require('./modules/groovy'),
-  require('./modules/pokemonLs'),
+  //require('./modules/groovy'),
+  //require('./modules/pokemonLs'),
   require('./modules/pogchamp'),
-  require('./modules/skribbl'),
-  require('./modules/genshin')
+  //require('./modules/genshin'),
+  require('./modules/ticketmaster')
 ];
 
 client.on('message', msg => {
@@ -48,12 +47,6 @@ client.on('message', msg => {
   if (msg.unresolved)
     msg.reply('idk what that means');
 
-});
-
-// kick stephen if he ever tries to join the genshin impact server
-client.on('guildMemberAdd', member => {
-  if (member.id == ID.Stephen && member.guild.id == ID.s_Genshin)
-    member.kick('no');
 });
 
 // mark a command as being resolved
