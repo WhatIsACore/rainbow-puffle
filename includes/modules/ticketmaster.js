@@ -5,8 +5,8 @@ const puppeteer = require('puppeteer-extra');
 const client = require('../discordClient');
 const ID = require('../idList');
 
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-puppeteer.use(StealthPlugin());
+//const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+//puppeteer.use(StealthPlugin());
 
 const url = 'https://www.ticketmaster.com/event/Z7r9jZ1Ad4vr8?tmrid=TMR-3541790';
 
@@ -35,7 +35,7 @@ async function initPuppeteer() {
 
 async function init() {
   await initPuppeteer();
-  setInterval(autoFetch, 60 * 1000);
+  setInterval(autoFetch, 60 * 60 * 1000);
 }
 init();
 
@@ -51,6 +51,10 @@ async function fetch() {
   await new Promise(async (resolve, reject) => {
     let int = setInterval(async () => {
       const loaded = await page.$('.quick-picks__button').catch(e => {});
+      if (tries === 19) {
+        const bodyText = await page.$eval('body', el => el.textContent);
+        logger.info(bodyText);
+      }
       if (loaded || tries > 20) {
         clearInterval(int);
         resolve();
