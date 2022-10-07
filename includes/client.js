@@ -22,7 +22,7 @@ const modules = [
   //require('./modules/pokemonLs'),
   require('./modules/pogchamp'),
   //require('./modules/genshin'),
-  require('./modules/ticketmaster')
+  //require('./modules/ticketmaster')
 ];
 
 client.on('message', msg => {

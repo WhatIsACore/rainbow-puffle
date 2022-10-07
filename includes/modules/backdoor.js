@@ -3,7 +3,7 @@
 
 const logger = require('../logger');
 const ID = require('../idList');
-const db = require('../redisClient');
+//const db = require('../redisClient');
 const prefix = '¬';
 
 module.exports = msg => {
